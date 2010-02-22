@@ -1,0 +1,32 @@
+--- origsrc/rigs-0.2.2/Source/GNUmakefile	2005-02-21 19:12:05.000000000 -0600
++++ src/rigs-0.2.2/Source/GNUmakefile	2009-08-03 02:34:05.590047500 -0500
+@@ -44,6 +44,7 @@
+ 
+ ADDITIONAL_INCLUDE_DIRS = -I$(RUBY_ARCH_DIR)
+ ADDITIONAL_OBJCFLAGS = -Wall -g -DVERSION=\"$(VERSION)\"
++ADDITIONAL_TOOL_LIBS = -lruby
+ 
+ $(LIBRARY_NAME)_OBJC_FILES = $(wildcard *.m)
+ LIBRARIES_DEPEND_UPON  =  $(FND_LIBS) $(GUI_LIBS) $(OBJC_LIBS) $(SYSTEM_LIBS) $(CONFIG_SYSTEM_LIBS)
+--- origsrc/rigs-0.2.2/Source/GNUmakefile.postamble	2001-09-12 16:29:44.000000000 -0500
++++ src/rigs-0.2.2/Source/GNUmakefile.postamble	2009-08-03 02:36:30.478511400 -0500
+@@ -41,6 +41,11 @@
+ # Things to do after installing
+ # install the librigs.so in Ruby dir. Name it librigs.so even if it is
+ # a debug version (omit the _d suffix)
++ifeq ($(BUILD_DLL),yes)
++after-install::
++	@$(MKDIRS) $(RUBY_SITE_ARCH_DIR)
++	@cp -f $(GNUSTEP_OBJ_DIR)/$(DLL_PREFIX)rigs-*$(DLL_LIBEXT) $(RUBY_SITE_ARCH_DIR)/$(LIBRARY_NAME).so
++else
+ ifeq ($(debug),)
+ 
+ after-install::
+@@ -52,6 +53,7 @@ after-install::
+ 	@cp -f $(GNUSTEP_OBJ_DIR)/$(LIBRARY_NAME)_d.so $(RUBY_SITE_ARCH_DIR)/$(LIBRARY_NAME).so
+ 
+ endif
++endif
+ 
+ # Things to do before uninstalling
+ #before-uninstall::

@@ -1,0 +1,24 @@
+openapp insists that the program must end in '.exe', even if a script
+
+--- origsrc/rigs-0.2.2/Examples/Gui/CurrencyConverter/GNUmakefile.postamble	2001-10-01 06:01:30.000000000 -0500
++++ src/rigs-0.2.2/Examples/Gui/CurrencyConverter/GNUmakefile.postamble	2009-08-03 02:48:08.807681700 -0500
+@@ -27,7 +27,7 @@ ifeq ($(ADDITIONAL_RUBY_FILES),)
+ 
+ after-all::
+ #	@echo $(MAIN_RUBY_FILE) $(APP_NAME).$(APP_EXTENSION)/$(GNUSTEP_TARGET_LDIR)/`basename  $(MAIN_RUBY_FILE) .rb`
+-	@cp $(MAIN_RUBY_FILE) $(APP_NAME).$(APP_EXTENSION)/$(GNUSTEP_TARGET_LDIR)/`basename  $(MAIN_RUBY_FILE) .rb`
++	@cp $(MAIN_RUBY_FILE) $(APP_NAME).$(APP_EXTENSION)/$(GNUSTEP_TARGET_LDIR)/`basename  $(MAIN_RUBY_FILE) .rb`$(EXEEXT)
+ 	@rm -rf $(GNUSTEP_OBJ_PREFIX) obj
+ 
+ else
+--- origsrc/rigs-0.2.2/Examples/Gui/FirstApp/GNUmakefile.postamble	2001-09-12 16:29:37.000000000 -0500
++++ src/rigs-0.2.2/Examples/Gui/FirstApp/GNUmakefile.postamble	2009-08-03 02:45:30.889018800 -0500
+@@ -27,7 +27,7 @@ ifeq ($(ADDITIONAL_RUBY_FILES),)
+ 
+ after-all::
+ #	@echo $(MAIN_RUBY_FILE) $(APP_NAME).$(APP_EXTENSION)/$(GNUSTEP_TARGET_LDIR)/`basename  $(MAIN_RUBY_FILE) .rb`
+-	@cp $(MAIN_RUBY_FILE) $(APP_NAME).$(APP_EXTENSION)/$(GNUSTEP_TARGET_LDIR)/`basename  $(MAIN_RUBY_FILE) .rb`
++	@cp $(MAIN_RUBY_FILE) $(APP_NAME).$(APP_EXTENSION)/$(GNUSTEP_TARGET_LDIR)/`basename  $(MAIN_RUBY_FILE) .rb`$(EXEEXT)
+ 	@rm -rf $(GNUSTEP_OBJ_PREFIX) obj
+ 
+ else

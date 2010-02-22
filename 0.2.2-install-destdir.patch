@@ -1,0 +1,30 @@
+--- origsrc/rigs-0.2.2/Ruby/GNUmakefile	2001-09-24 06:12:01.000000000 -0500
++++ src/rigs-0.2.2/Ruby/GNUmakefile	2009-08-03 02:38:38.537968100 -0500
+@@ -28,13 +28,13 @@ include $(GNUSTEP_MAKEFILES)/common.make
+ 
+ # Dynamically determine where the things must be installed
+ # in Ruby
+-RUBY_SITE_LIB_DIR := $(shell ruby -rrbconfig -e 'print Config::CONFIG["sitelibdir"]')
++RUBY_SITE_LIB_DIR := $(DESTDIR)$(shell ruby -rrbconfig -e 'print Config::CONFIG["sitelibdir"]')
+ 
+ 
+ after-install::
++	@$(MKDIRS) $(RUBY_SITE_LIB_DIR)/rigs
+ 	@cp -f rigs.rb Foundation.rb AppKit.rb $(RUBY_SITE_LIB_DIR)
+-	@rm -rf $(RUBY_SITE_LIB_DIR)/rigs/*
+-	@cp -rf rigs $(RUBY_SITE_LIB_DIR)
++	@cp -f rigs/*.rb $(RUBY_SITE_LIB_DIR)/rigs/
+ 
+ # Is there something more appropriate than tool.make here ?
+ include $(GNUSTEP_MAKEFILES)/tool.make
+--- origsrc/rigs-0.2.2/Source/GNUmakefile	2005-02-21 19:12:05.000000000 -0600
++++ src/rigs-0.2.2/Source/GNUmakefile	2009-08-03 02:34:05.590047500 -0500
+@@ -40,7 +40,7 @@ GNUSTEP_INSTALLATION_DIR = $(GNUSTEP_LOC
+ # in Ruby
+ RUBY_ARCH_DIR := $(shell ruby -rrbconfig -e 'print Config::CONFIG["archdir"]')
+ 
+-RUBY_SITE_ARCH_DIR := $(shell ruby -rrbconfig -e 'print Config::CONFIG["sitearchdir"]')
++RUBY_SITE_ARCH_DIR := $(DESTDIR)$(shell ruby -rrbconfig -e 'print Config::CONFIG["sitearchdir"]')
+ 
+ ADDITIONAL_INCLUDE_DIRS = -I$(RUBY_ARCH_DIR)
+ ADDITIONAL_OBJCFLAGS = -Wall -g -DVERSION=\"$(VERSION)\"

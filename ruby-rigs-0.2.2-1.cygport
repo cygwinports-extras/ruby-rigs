@@ -1,0 +1,10 @@
+ORIG_PN="rigs"
+inherit ruby gnustep
+
+DESCRIPTION="Ruby bindings for GNUstep Foundation and AppKit"
+
+SRC_URI="mirror://gnustep/libs/${ORIG_PN}-${PV}.tar.gz"
+PATCH_URI="0.2.2-cygwin-dll.patch
+           0.2.2-examples-exeext.patch
+           0.2.2-gcc43.patch
+           0.2.2-install-destdir.patch"
